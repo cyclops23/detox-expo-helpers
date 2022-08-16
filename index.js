@@ -81,7 +81,7 @@ const reloadApp = async (params) => {
     params && params.urlBlacklist
   );
   const appUrl = await getAppUrl();
-  console.log(appUrl)
+  console.log("APPURL" + appUrl)
   await device.launchApp({
     permissions: params && params.permissions,
     newInstance: true,
