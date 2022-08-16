@@ -80,8 +80,7 @@ const reloadApp = async (params) => {
   const formattedBlacklistArg = await blacklistCmdlineFormat(
     params && params.urlBlacklist
   );
-  const appUrl = await getAppUrl();
-  console.log("APPURL" + appUrl)
+  let appUrl = (await getAppUrl()).replace("80", "19000");
   await device.launchApp({
     permissions: params && params.permissions,
     newInstance: true,
