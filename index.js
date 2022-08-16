@@ -38,12 +38,11 @@ const getAppUrl = async () => {
 };
 
 const getAppHttpUrl = async () => {
-  const httpUrl = await UrlUtils.constructUrlAsync(
+  return UrlUtils.constructUrlAsync(
     process.cwd(),
     { urlType: "http" },
     true
   );
-  return httpUrl;
 };
 
 function resetEnvDyldVar(oldEnvVar) {
@@ -81,11 +80,12 @@ const reloadApp = async (params) => {
   const formattedBlacklistArg = await blacklistCmdlineFormat(
     params && params.urlBlacklist
   );
-  const url = await getAppUrl();
+  const appUrl = await getAppUrl();
+  console.log(appUrl)
   await device.launchApp({
     permissions: params && params.permissions,
     newInstance: true,
-    url,
+    url: appUrl,
     sourceApp: "host.exp.exponent",
     launchArgs: {
       EXKernelDisableNuxDefaultsKey: true,
